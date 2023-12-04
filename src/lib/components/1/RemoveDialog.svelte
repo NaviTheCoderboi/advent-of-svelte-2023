@@ -31,7 +31,7 @@
 		action="?/remove"
 	>
 		<input name="formData" class="hidden" value={JSON.stringify(Form_data)} />
-		<h1 class="text-4xl font-medium text-center">New note</h1>
+		<h1 class="text-4xl font-medium text-center">Remove child</h1>
 		<div class="inp relative">
 			<input class="inp-input" type="text" required={true} bind:value={Form_data.name} />
 			<span>name</span>
