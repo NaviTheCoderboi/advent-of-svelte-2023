@@ -11,7 +11,7 @@
 			<h1 class="text-2xl font-bold tracking-tighter">Elves's dashboard</h1>
 		</div>
 		<a
-			href="https://github.com"
+			href="https://github.com/NaviTheCoderboi/advent-of-svelte-2023"
 			target="_blank"
 			class="brightness-75 hover:brightness-100 duration-200"
 		>

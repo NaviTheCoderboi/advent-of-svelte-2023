@@ -252,13 +252,23 @@
 					<th class="p-4 text-xl font-light">Character</th>
 				</thead>
 				<tbody>
-					{#each currentPage as child (child)}
+					{#if currentPage == undefined || currentPage.length === 0}
 						<tr class="border-b-0.5 border-b-gray-800">
-							<td class="p-4 text-lg font-light text-gray-300">{child.name}</td>
-							<td class="p-4 text-lg font-light text-gray-300">{child.tally}</td>
-							<td class="p-4 text-lg font-light text-gray-300">{child.character}</td>
+							<td class="p-4 text-lg font-light text-gray-300" colspan="3">
+								No children found
+							</td>
 						</tr>
-					{/each}
+					{:else}
+						{#each currentPage as child (child)}
+							<tr class="border-b-0.5 border-b-gray-800">
+								<td class="p-4 text-lg font-light text-gray-300">{child.name}</td>
+								<td class="p-4 text-lg font-light text-gray-300">{child.tally}</td>
+								<td class="p-4 text-lg font-light text-gray-300"
+									>{child.character}</td
+								>
+							</tr>
+						{/each}
+					{/if}
 				</tbody>
 			</table>
 			<div class="p-4 border-b-0.5 border-gray-800 text-xl font-light">
