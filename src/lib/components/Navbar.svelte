@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Santa from '$lib/assets/1/santa.png';
+
+	export let Title: string;
 </script>
 
 <div class="z-[100] sticky top-0 py-3 w-full">
@@ -8,7 +10,7 @@
 	>
 		<div class="flex items-center gap-2">
 			<img src={Santa} height="65" width="65" alt="adevnt-of-svelte" />
-			<h1 class="text-2xl font-bold tracking-tighter">Elves's dashboard</h1>
+			<h1 class="text-2xl font-bold tracking-tighter">{Title}</h1>
 		</div>
 		<a
 			href="https://github.com/NaviTheCoderboi/advent-of-svelte-2023"

@@ -10,6 +10,10 @@
 		{
 			name: "Elves's dashboard",
 			link: '/day/1'
+		},
+		{
+			name: "Santa's cookie jar",
+			link: '/day/2'
 		}
 	];
 </script>

@@ -2,17 +2,17 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
-<Navbar Title="Elves's dashboard" />
+<Navbar Title="Santa's cookie jar" />
 <slot />
 
 <style>
-	::-webkit-scrollbar,
-	::-webkit-scrollbar-track {
+	:global(*)::-webkit-scrollbar,
+	:global(*)::-webkit-scrollbar-track {
 		width: 10px;
 		background: #000;
 	}
 
-	::-webkit-scrollbar-thumb {
+	:global(*)::-webkit-scrollbar-thumb {
 		background-color: rgb(55 65 81);
 		border-radius: 4px;
 	}
