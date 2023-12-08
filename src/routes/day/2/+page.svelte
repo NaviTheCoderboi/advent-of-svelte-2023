@@ -1,23 +1,102 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import Cookie from '$lib/assets/2/cookie.webp';
 	import Game from '$lib/components/2/Game.svelte';
+	import SEO from '$lib/components/SEO.svelte';
+	import Bar from '$lib/utils/2/score';
+	import { onDestroy, onMount } from 'svelte';
+
+	onMount(() => {
+		Bar.set(0);
+	});
+
+	onDestroy(() => {
+		Bar.set(0);
+	});
+
+	const getColor = (_bar: number) => {
+		if (_bar < 10) {
+			return 'bg-orange-500';
+		} else if (_bar < 20) {
+			return 'bg-yellow-500';
+		} else if (_bar < 40) {
+			return 'bg-pink-500';
+		} else if (_bar < 60) {
+			return 'bg-green-500';
+		} else if (_bar < 80) {
+			return 'bg-red-500';
+		} else {
+			return 'bg-red-700';
+		}
+	};
+
+	const getEmoji = (_bar: number) => {
+		if (_bar < 20) {
+			return '😟';
+		} else if (_bar < 40) {
+			return '🙂';
+		} else if (_bar < 60) {
+			return '😋';
+		} else if (_bar < 80) {
+			return '😣';
+		} else {
+			return '🤢';
+		}
+	};
+
+	let color = 'bg-yellow-500';
+	let width = '0%';
+	let emoji = '😟';
+
+	Bar.subscribe((bar) => {
+		color = getColor(bar);
+		width = `${bar}%`;
+		emoji = getEmoji(bar);
+	});
 </script>
 
+<svelte:head>
+	<SEO
+		title="Santa cookie rush"
+		description="A cookie collecting game made by NaviTheCoderboi"
+		author="NaviTheCoderboi"
+		keywords={['Santa', 'Christmas', 'Game', 'Cookies', 'NaviTheCoderboi']}
+		og={{
+			title: 'Santa cookie rush',
+			description: 'A cookie collecting game made by NaviTheCoderboi',
+			image: '/favicon.png',
+			type: 'website'
+		}}
+		robots="index, follow"
+		themeColor="#ec535b"
+		twitter={{
+			card: 'summary_large_image',
+			creator: '@NaviTheCoderboi',
+			description: 'A cookie collecting game made by NaviTheCoderboi',
+			image: '/favicon.png',
+			title: 'Santa cookie rush'
+		}}
+	/>
+</svelte:head>
 <div class="w-full">
 	<main class="hidden md:block w-full px-2 lg:px-0 lg:w-3/5 mx-auto min-h-screen py-6">
 		<div class="flex items-center gap-4 py-4">
 			<h1 class="text-4xl font-bold">Santa cookie rush</h1>
 			<img src={Cookie} alt="cookie" height="65" width="65" />
 		</div>
-		<div class="flex items-center gap-1 text-lg font-light text-gray-300">
-			Run and collect cookies now! beware of santa , don't make him
-			<span class="text-green-500">sick</span>
+		<div class="text-lg font-light text-gray-300">
+			Run and collect cookies now! beware of santa , don't make him sick You can make santa a
+			bit healty by running a bit without collecting cookies for a moment
+		</div>
+		<div class="flex justify-center items-center py-2">
+			<div class="w-96 h-20 rounded-3xl border-8 border-gray-700">
+				<div class="h-full rounded-xl {color}" style="width: {width}" />
+			</div>
+			<div class="text-6xl">
+				{emoji}
+			</div>
 		</div>
 		<div class="flex justify-center items-center py-10">
-			{#if browser}
-				<Game />
-			{/if}
+			<Game />
 		</div>
 		<div class="flex justify-center items-center gap-4 py-4">
 			<div class="flex justify-center items-center gap-2">

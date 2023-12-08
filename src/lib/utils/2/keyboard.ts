@@ -1,5 +1,16 @@
 import type * as PIXI from 'pixi.js';
 import jump from './jump';
+import Bar from './score';
+
+const reduceBarOnWalk = () => {
+	Bar.update((n) => {
+		const random = Math.floor(Math.random() * (40 - 1 + 1)) + 1;
+		if (random === 1) {
+			return n - (Math.floor(Math.random() * (3 - 1 + 1)) + 1);
+		}
+		return n;
+	});
+};
 
 let stopAnimationTimeout: NodeJS.Timeout;
 
@@ -16,6 +27,7 @@ const keyDown = (
 	stageWidth: number
 ) => {
 	if (e.key === 'ArrowLeft') {
+		reduceBarOnWalk();
 		if (santaSprite.x <= 0) {
 			santaSprite.x = stageWidth;
 		}
@@ -41,6 +53,7 @@ const keyDown = (
 		}
 		e.preventDefault();
 	} else if (e.key === 'ArrowRight') {
+		reduceBarOnWalk();
 		if (santaSprite.x >= stageWidth) {
 			santaSprite.x = 0;
 		}
@@ -65,6 +78,7 @@ const keyDown = (
 		}
 		e.preventDefault();
 	} else if (e.key === 'ArrowUp') {
+		reduceBarOnWalk();
 		if (!e.repeat) {
 			jump(santaSprite, standFrame);
 		} else {
@@ -79,6 +93,7 @@ const keyDown = (
 		e.preventDefault();
 	}
 	if (keyState['ArrowLeft'] && keyState['ArrowUp']) {
+		reduceBarOnWalk();
 		if (santaSprite.x <= 0) {
 			santaSprite.x = stageWidth;
 		}
@@ -95,6 +110,7 @@ const keyDown = (
 		}, 500);
 		e.preventDefault();
 	} else if (keyState['ArrowRight'] && keyState['ArrowUp']) {
+		reduceBarOnWalk();
 		if (santaSprite.x >= stageWidth) {
 			santaSprite.x = 0;
 		}
